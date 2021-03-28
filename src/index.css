@@ -1,0 +1,70 @@
+.game-over-field {
+  animation: gameover;
+  animation-duration: 0.7s;
+  font-size: 30px;
+  height: 60%;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+}
+
+@keyframes gameover {
+  from {
+    height: 0%;
+    font-size: 0px;
+    width: 0%;
+  }
+  to {
+    height: 60%;
+    font-size: 30px;
+    width: 60%;
+  }
+}
+
+.win {
+  background-color: #60bb43;
+  box-shadow: 0 0 60px 66px #9202ff, inset 0 0 30px currentColor;
+  color: white
+}
+
+.lose {
+  background-color: #dad6d6;
+  box-shadow: 0 0 60px 66px #9202ff, inset 0 0 30px currentColor;
+  color: #dc1d1d;
+}
+
+.game-over-field::before {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  text-shadow: 0 0 10px currentColor;
+  position: absolute;
+  width: 100%;
+}
+
+.game-over-field.win::before {
+  content: "You Win";
+}
+
+.game-over-field.lose::before {
+  content: "You Lose";
+}
+
+.game-score {
+  position: absolute;
+  font-size: 17px;
+  z-index: 1;
+}
+
+.game-field {
+  border: 10px solid #663355;
+  position: relative;
+  overflow: hidden;
+}
+
+/* .key-control {
+
+} */
