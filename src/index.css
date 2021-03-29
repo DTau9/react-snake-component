@@ -1,3 +1,8 @@
+.game-snake {
+  text-align: center;
+  width: min-content;
+}
+
 .game-over-field {
   animation: gameover;
   animation-duration: 0.7s;
@@ -65,6 +70,7 @@
   overflow: hidden;
 }
 
-/* .key-control {
-
-} */
+.key-control {
+  min-width: 100%;
+  width: 0;
+}

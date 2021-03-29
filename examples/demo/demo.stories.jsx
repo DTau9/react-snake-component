@@ -5,7 +5,7 @@ export const DemoStory = Demo.bind({});
 DemoStory.storyName = 'Demo';
 DemoStory.args = {
   collisionWithWalls: false,
-  changepeed: true,
+  changeSpeed: true,
   scoreForWin: 20
 }
 
@@ -18,7 +18,7 @@ export default {
         type: 'boolean'
       }
     },
-    changepeed: {
+    changeSpeed: {
       control: {
         type: 'boolean'
       }

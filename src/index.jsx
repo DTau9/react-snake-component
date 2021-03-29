@@ -4,7 +4,7 @@ import './index.css';
 export default class Snake extends React.Component {
   constructor(props) {
     super(props);
-    const { widthField, heightField, segmentSize, scoreForWin } = this.props;
+    const { widthField, heightField, segmentSize } = this.props;
     this.widthField = widthField;
     this.heightField = heightField;
     this.segmentSize = segmentSize;
@@ -128,7 +128,7 @@ export default class Snake extends React.Component {
 
     if (this.isEqualPosition(food, newHead)) {
       ++newScore;
-      if (this.changepeed) timeoutDelay -= 10;
+      if (this.changeSpeed) timeoutDelay -= 10;
 
       do {
         newFoodPosition = this.changeFoodPosition();
@@ -213,6 +213,7 @@ export default class Snake extends React.Component {
 
   handler() {
     document.addEventListener('keydown', (e) => {
+      e.preventDefault();
       if (e.code === 'Space') { this.pauseGame() }
       if (e.code === 'Enter') { this.startGame() }
       if (e.code === 'Backspace') { this.resetGame() }
@@ -225,7 +226,7 @@ export default class Snake extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.intervalId)
+    clearInterval(this.state.timeoutId)
   }
 
   render() {
@@ -239,7 +240,7 @@ export default class Snake extends React.Component {
     const end = gameEnd ? <div className={`game-over-field ${bgColorGameOver}`}></div> : null;
 
     return (
-      <>
+      <div className='game-snake'>
         <div className='game-field' style={{ width: this.widthField, height: this.heightField }}>
           <div className='game-score'>Score: {score}</div>
           {viewSnake}
@@ -247,21 +248,21 @@ export default class Snake extends React.Component {
           {end}
         </div>
         <div className='key-control'>
-          <p>&#8678; &#8679; &#8681; &#8680;</p>
-          <p>Enter &#8210; start</p>
-          <p>Space &#8210; pause</p>
-          <p>Backspace &#8210; reset</p>
+          <p><>&#8678; &#8679; &#8681; &#8680;</></p>
+          <p><code>Enter</code> &#8210; start</p>
+          <p><code>Space</code> &#8210; pause</p>
+          <p><code>Backspace</code> &#8210; reset</p>
         </div>
-      </>
+      </div>
     )
   }
 }
 
 Snake.defaultProps = {
   collisionWithWalls: true,
-  changepeed: true,
-  widthField: 300,
-  heightField: 300,
+  changeSpeed: true,
+  widthField: 340,
+  heightField: 340,
   segmentSize: 20,
   scoreForWin: 20
 }
