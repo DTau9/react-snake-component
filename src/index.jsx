@@ -124,6 +124,14 @@ export default class Snake extends React.Component {
       }
     }
 
+    if (!this.props.collisionWithWalls) {
+      if (newHead.left > (this.widthField - this.segmentSize)) newHead.left = 0;
+      if (newHead.left < 0) newHead.left = this.widthField - this.segmentSize;
+      if (newHead.top > (this.heightField - this.segmentSize)) newHead.top = 0;
+      if (newHead.top < 0) newHead.top = this.heightField - this.segmentSize;
+    }
+
+
     snakeSegmentsPositions.unshift(newHead);
 
     if (this.isEqualPosition(food, newHead)) {
@@ -137,14 +145,6 @@ export default class Snake extends React.Component {
     } else {
       snakeSegmentsPositions.pop();
     }
-
-    if (!this.props.collisionWithWalls) {
-      if (newHead.left > (this.widthField - this.segmentSize)) newHead.left = 0;
-      if (newHead.left < 0) newHead.left = this.widthField - this.segmentSize;
-      if (newHead.top > (this.heightField - this.segmentSize)) newHead.top = 0;
-      if (newHead.top < 0) newHead.top = this.heightField - this.segmentSize;
-    }
-
     if (this.isCollision(newHead) || newScore === this.props.scoreForWin) {
       this.gameOver();
     }
