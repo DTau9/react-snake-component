@@ -209,11 +209,7 @@ export default class Snake extends React.Component {
     })
   }
 
-  handler() {
-    document.addEventListener('keydown', this.gameControl)
-  }
-
-  gameControl = (e) => {
+  gameControlHandler = (e) => {
     e.preventDefault();
     if (e.code === 'Space') { this.pauseGame() }
     if (e.code === 'Enter') { this.startGame() }
@@ -222,12 +218,12 @@ export default class Snake extends React.Component {
   }
 
   componentDidMount() {
-    this.handler();
+    document.addEventListener('keydown', this.gameControlHandler)
   }
 
   componentWillUnmount() {
     clearInterval(this.intervalId)
-    document.removeEventListener('keydown', this.gameControl)
+    document.removeEventListener('keydown', this.gameControlHandler)
   }
 
   render() {
