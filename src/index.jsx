@@ -208,25 +208,23 @@ export default class Snake extends React.Component {
         top: 5 * this.segmentSize
       }
     })
-
   }
 
-  handler() {
-    document.addEventListener('keydown', (e) => {
-      e.preventDefault();
-      if (e.code === 'Space') { this.pauseGame() }
-      if (e.code === 'Enter') { this.startGame() }
-      if (e.code === 'Backspace') { this.resetGame() }
-      this.setDirection(e.code)
-    })
+  gameControlHandler = (e) => {
+    e.preventDefault();
+    if (e.code === 'Space') { this.pauseGame() }
+    if (e.code === 'Enter') { this.startGame() }
+    if (e.code === 'Backspace') { this.resetGame() }
+    this.setDirection(e.code)
   }
 
   componentDidMount() {
-    this.handler();
+    document.addEventListener('keydown', this.gameControlHandler)
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.timeoutId)
+    clearInterval(this.intervalId)
+    document.removeEventListener('keydown', this.gameControlHandler)
   }
 
   render() {
