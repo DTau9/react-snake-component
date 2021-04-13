@@ -1,6 +1,12 @@
 .game-snake {
   text-align: center;
-  width: min-content;
+}
+
+.game-field {
+  border: 10px solid #663355;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
 }
 
 .game-over-field {
@@ -62,12 +68,6 @@
   position: absolute;
   font-size: 17px;
   z-index: 1;
-}
-
-.game-field {
-  border: 10px solid #663355;
-  position: relative;
-  overflow: hidden;
 }
 
 .key-control {
